@@ -1,0 +1,16 @@
+<div class="container border border-dark p-3 mt-4">
+    <h3 class="mb-2 pb-5">Product Details</h3>
+    <div class="row ml-5">
+        <div class="col-2">
+            <h5 class="mr-5">Name:</h5>
+            <h5 class="mr-5 my-2">Qty:</h5>
+            <h5 class="mr-5">Price:</h5>
+        </div>
+        <div class="col-3">
+            <p>{{product.name}}</p>
+            <p>{{product.quantity}}</p>
+            <p>{{product.price}}</p>
+        </div>
+    </div>
+    <button class="btn btn-info" [routerLink]="['/products']">Back</button> <button *ngIf="product.quantity == 0" class="btn btn-danger ml-5" (click)="deleteProd()">Delete Product</button>
+</div>

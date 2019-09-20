@@ -1,0 +1,40 @@
+<div class="container border border-dark p-3 mt-4">
+    <h3>New Product</h3>
+    <form (submit)="onSubmit(newForm)" #newForm="ngForm">
+        <div class="form-group">
+            <label>Product name</label>
+            <input type="text" class="form-control" placeholder="product name" required minlength="3" name="name"
+                [(ngModel)]="product.name" #name="ngModel">
+        </div>
+        <div *ngIf="(name.touched || name.dirty) && name.errors">
+            <div *ngIf="name?.errors?.required" class="alert alert-danger">
+                You must enter a product name!
+            </div>
+            <div *ngIf="name?.errors?.minlength" class="alert alert-danger">
+                Product name must be at least 3 characters!
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Product quantity</label>
+            <input type="number" class="form-control" placeholder="product quantity" required
+                name="quantity" [(ngModel)]="product.quantity" #quantity="ngModel">
+        </div>
+        <div *ngIf="(quantity.touched || quantity.dirty) && quantity.errors">
+            <div *ngIf="quantity?.errors?.required" class="alert alert-danger">
+              You must enter a product quantity!
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Product price</label>
+            <input type="number" class="form-control" placeholder="product price" required
+                name="price" [(ngModel)]="product.price" #price="ngModel">
+                <small class="form-text text-muted">Required - Must be at least 1 dollar.</small>
+        </div>
+        <div *ngIf="(price.touched || price.dirty) && price.errors">
+            <div *ngIf="price?.errors?.required" class="alert alert-danger">
+              You must enter a product price! Otherwise why are you selling it??
+            </div>
+          </div>
+          <button class="btn btn-primary" type="button" (click)="clearForm(newForm)">Reset</button> | <button class="btn btn-success" *ngIf="newForm.valid">Create</button>
+    </form>
+</div>
